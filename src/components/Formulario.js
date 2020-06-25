@@ -31,6 +31,7 @@ const Formulario = ({ guardaMoneda, guardaCriptomoneda}) => {
     const monedas = [
         {codigo:'USD', nombre:'dolar de estados unidos'},
         {codigo:'MXN', nombre:'peso mexicano'},
+        {codigo:'EUR', nombre:'euro'},
         {codigo:'BRL', nombre:'real brasileño'},
         {codigo:'ARS', nombre:'peso argentino'}
     ]
