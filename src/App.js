@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import './App.css';
 import styled from '@emotion/styled'
 
@@ -40,6 +40,17 @@ const Heading = styled.h1`
 
 
 function App() {
+
+  const [moneda, guardaMoneda] = useState('')
+  const [criptomoneda, guardaCriptomoneda] = useState('')
+
+  useEffect( () => {
+
+    if(moneda==='') return
+    console.log('cotizando...')
+
+  }, [moneda, criptomoneda] )
+
   return (
     <Contenedor>
       <div>
@@ -47,7 +58,10 @@ function App() {
       </div>
       <div>
         <Heading>Cotiza Criptomonedas al instante</Heading>
-        <Formulario />
+        <Formulario
+          guardaMoneda={guardaMoneda}
+          guardaCriptomoneda={guardaCriptomoneda}
+        />
       </div>
     </Contenedor>
   );

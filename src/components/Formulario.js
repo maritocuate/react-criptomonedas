@@ -4,6 +4,7 @@ import axios from 'axios'
 
 import useMonedas from '../hooks/useMonedas'
 import useCrypto from '../hooks/useCrypto'
+import Error from './Error'
 
 const Button = styled.input`
     margin-top: 20px;
@@ -23,7 +24,7 @@ const Button = styled.input`
     }
 `;
 
-const Formulario = () => {
+const Formulario = ({ guardaMoneda, guardaCriptomoneda}) => {
 
     const [cryptos, actualizarCryptos] = useState([])
 
@@ -37,6 +38,7 @@ const Formulario = () => {
     //Hooks
     const [moneda, SelectMoneda] = useMonedas('Selecciona una moneda', '', monedas)
     const [cryptomoneda, SelectCrypto] = useCrypto('Selecciona una cryptomoneda', '', cryptos)
+    const [error, saveError] = useState(false)
 
     //Init
     useEffect( () => {
@@ -49,8 +51,24 @@ const Formulario = () => {
         consultarApi()
     }, [])
 
+    const handleSubmit = e => {
+        e.preventDefault()
+
+        if(moneda === '' || cryptomoneda === ''){
+            saveError(true)
+        }else{
+            saveError(false)
+
+            guardaMoneda(moneda)
+            guardaCriptomoneda(cryptomoneda)
+        }
+    }
+
     return (
-        <form>
+        <form onSubmit={handleSubmit}>
+
+            { error ? <Error msg='Todos los campos son obligatorios' /> : null }
+
             <SelectMoneda />
             <SelectCrypto />
             <Button type='submit' value='Calcular'></Button>
