@@ -75,7 +75,7 @@ function App() {
           <Imagen src={imagen} alt='cryptomonedas-logo' />
       </div>
       <div>
-        <Heading>Cotiza Criptomonedas al instante</Heading>
+        <Heading>Cotiza Criptomonedas</Heading>
         <Formulario
           guardaMoneda={guardaMoneda}
           guardaCriptomoneda={guardaCriptomoneda}
