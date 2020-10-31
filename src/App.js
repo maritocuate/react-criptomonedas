@@ -53,14 +53,15 @@ function App() {
     const consulta = async () => {
       if(moneda==='') return
 
-      const url = `https://min-api.cryptocompare.com/data/pricemultifull?fsyms=${moneda}&tsyms=${criptomoneda}`
+      const url = `https://min-api.cryptocompare.com/data/pricemultifull?fsyms=${criptomoneda}&tsyms=${moneda}`
       const result = await axios.get(url)
 
       guardarCargando(true)
 
       setTimeout( ()=>{
         guardarCargando(false)
-        guardaResultado(result.data.DISPLAY[moneda][criptomoneda])
+        console.log(result.data)
+        guardaResultado(result.data.DISPLAY[criptomoneda][moneda])
       }, 3000 )
       
     }
@@ -75,7 +76,7 @@ function App() {
           <Imagen src={imagen} alt='cryptomonedas-logo' />
       </div>
       <div>
-        <Heading>Cotiza Criptomonedas</Heading>
+        <Heading>Cotizador</Heading>
         <Formulario
           guardaMoneda={guardaMoneda}
           guardaCriptomoneda={guardaCriptomoneda}
